@@ -89,6 +89,22 @@ an empty second column. Centered block instead:
   `/contacto`, not embedded on the landing page itself) rather than the
   original single-page pairing.
 
+## Revision (2026-08-27): logo-shaped background artwork
+
+Added a background panel behind the centered text after initial build —
+see `docs/ARTWORK.md`'s new "Mask" section for the generator mechanics.
+Summary: `scripts/artwork.py`'s pre-existing (unused) `cta` slot now masks
+its ASCII mesh by the real Nettyo mark (`Nettyo-Solutions.png`) instead of
+noise, uses the brand teal ramp (accent-soft → accent-light → accent —
+capped below `accent-strong`, which failed contrast) instead of the
+generator's default warm-sand stops, and anchors the mark to the bottom
+edge at `mask_scale: 1.7` so it crops and peeks up into frame rather than
+sitting whole and centered. Resized from the original 4:5 side-panel shape
+to a 2400x1000 full-bleed shape. Rendered via `next/image` with `fill` +
+`object-cover` behind `FinalCta.tsx`'s content. Contrast verified with PIL
+pixel sampling across the text-safe zone (worst case 5.8:1, clears AA)
+rather than eyeballed.
+
 ## Out of scope
 
 - No footer on `/contacto` (§13 not built anywhere yet).
