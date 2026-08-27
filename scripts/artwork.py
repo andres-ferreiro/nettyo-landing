@@ -119,22 +119,22 @@ SLOTS = {
                  (0.80, (246, 96, 122)), (1.00, (168, 28, 92))]},
     "footer": {
         # Bookends `cta` rather than repeating it: same peeking-mask
-        # language, but masks rendered text instead of the logo image, and a
-        # flat neutral ramp instead of brand teal — a quiet close after the
-        # CTA's loud climax, not a continuation of it.
-        #
-        # Chasing AA contrast by shrinking `ink` toward zero (tried down to
-        # 0.03) never actually cleared 4.5:1 against foreground-secondary —
-        # even the bare ramp's darkest stop only measured 4.13:1 on its own.
-        # Real fix lives in Footer.tsx, not here: real link text sits in a
-        # solid `--background` zone with nothing behind it, and this artwork
-        # is confined to a text-free decorative strip below that zone. Once
-        # nothing readable ever overlaps it, it's exempt from text-contrast
-        # rules entirely (decorative, `alt=""`), so ink is back to a visible
-        # strength instead of a chased-to-invisible compromise.
+        # language, but masks rendered text instead of the logo image, and
+        # `transparent: True` instead of a colour ramp — just the glyph ink
+        # on alpha, no painted panel at all. Real link text sits in a
+        # separate solid `--background` zone above this (see Footer.tsx),
+        # so this strip is exempt from text-contrast rules entirely
+        # (decorative, `alt=""`) — that's what makes a visible `ink` safe
+        # here after chasing it toward zero failed on the earlier
+        # painted-panel version.
         "seed": 91, "cell": 13, "chars": "soft", "field": 0.55,
-        "size": (2400, 600),
+        "size": (2400, 600), "transparent": True,
         "mask_text": "NETTYO\nSOLUTIONS", "mask_scale": 0.85,
+        # 0.72 is the *maximum* reveal, reached only once a visitor scrolls
+        # to the true end of the page (Footer.tsx animates a translateY on
+        # this image via scroll progress) — baked into the source once,
+        # rather than generating two variants, since the reveal is a CSS
+        # transform on top of this fixed image.
         "mask_anchor": "bottom", "mask_peek": 0.72,
         "ink": 0.55,
         "ramp": [(0.00, PAPER), (1.00, (215, 211, 202))],
@@ -278,14 +278,23 @@ def render(name, spec):
             d.text((c * CELL, r * CELL - CELL // 4), ch, font=font,
                    fill=(18, 24, 26, int(a)))
 
-    out = Image.alpha_composite(big.convert("RGBA"), overlay).convert("RGB")
     path = f"{OUT_DIR}/{name}.avif"
-    # q48: at 1:1 in the densest mesh region q80/q55/q45 are indistinguishable,
-    # and these panels display at roughly a third of native size. q80 cost
-    # 4x the bytes for nothing. Grain and mesh are high-entropy, so quality
-    # here is almost pure file size.
-    out.save(path, quality=48)
-    modal = Counter(out.get_flattened_data()).most_common(1)[0][0]
+    if spec.get("transparent"):
+        # No gradient/grain layer composited underneath — just the glyph ink
+        # on true alpha, so the page's own --background shows through
+        # everywhere except the letterforms themselves. `ramp` above is
+        # still used (to vary glyph density across the shape via `vals`),
+        # it just never becomes a visible painted layer.
+        overlay.save(path, quality=80)
+        modal = "transparent"
+    else:
+        out = Image.alpha_composite(big.convert("RGBA"), overlay).convert("RGB")
+        # q48: at 1:1 in the densest mesh region q80/q55/q45 are
+        # indistinguishable, and these panels display at roughly a third of
+        # native size. q80 cost 4x the bytes for nothing. Grain and mesh are
+        # high-entropy, so quality here is almost pure file size.
+        out.save(path, quality=48)
+        modal = Counter(out.get_flattened_data()).most_common(1)[0][0]
     print(f"{path:<44} {W}x{H}  modal {modal}")
 
 

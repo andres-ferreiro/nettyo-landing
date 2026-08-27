@@ -106,6 +106,28 @@ for real visual presence instead of a chased-to-invisible compromise. See
 `docs/ARTWORK.md`'s "Text masks and `ink`" section for the full generator
 mechanics (also added `mask_text` and `mask_peek`, both new).
 
+## Revision (2026-08-27): transparent artwork + scroll-linked reveal
+
+Per direct feedback on the built version: the flat neutral ramp behind
+the wordmark read as an unwanted background rectangle, not "just the
+text." Fixed via `scripts/artwork.py`'s new `transparent` flag — the
+`footer` slot now saves pure alpha (glyph ink only, verified as
+`(0,0,0,0)` at a corner pixel after a round-trip through Pillow's AVIF
+encoder/decoder), so the page's own `--background` shows through
+everywhere else. See `docs/ARTWORK.md`'s new "`transparent`" subsection.
+
+Also added a scroll-linked reveal: `FooterArt.tsx` (new client component,
+extracted out of `Footer.tsx` since the animation needs hooks and
+`Footer` itself is an async server component) starts the artwork
+partially hidden — mostly "NETTYO," only a hint of "SOLUTIONS" — and
+animates it to full reveal via `translateY`, driven by `useScroll`
+targeting the strip with `offset: ["start end", "end end"]`. That offset
+means progress reaches `1` exactly when the visitor scrolls to the true
+end of the page (this is the last element on it), so the reveal reads as
+a small payoff for reaching the bottom rather than an arbitrary scroll
+effect. Transform-only (`y`), gated on `useReducedMotion`, per
+`DESIGN_SYSTEM.md`'s motion rules.
+
 ## Out of scope
 
 - No social links (none exist yet).

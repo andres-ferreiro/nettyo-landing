@@ -105,6 +105,20 @@ itself lighter for that, or keep readable text off the artwork entirely
 and the mask lives in a separate text-free strip below it, where full
 `ink` is safe because nothing readable ever overlaps it).
 
+### `transparent`: no painted panel at all
+
+`"transparent": True` skips compositing the glyph overlay onto the
+gradient+grain layer and saves the overlay directly, alpha intact — just
+ink on true transparency, so the page's own `--background` shows through
+everywhere except the letterforms. `ramp` is still required and still
+used (it drives `vals`, which varies glyph *density* across the shape),
+it just never becomes a visible painted layer. `footer` uses this: no
+colour panel, literally "just the text," per direct feedback that an
+earlier version's flat neutral ramp read as an unwanted background
+rectangle. AVIF's alpha channel round-trips through Pillow fine — verified
+by reading a saved file back and checking a corner pixel is `(0,0,0,0)`,
+not assumed.
+
 ## Four things the generator does that are not obvious
 
 1. **One draw call per mesh cell.** Drawing a whole row as a single string
