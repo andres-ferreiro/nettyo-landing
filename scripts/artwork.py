@@ -139,6 +139,29 @@ SLOTS = {
         "ink": 0.55,
         "ramp": [(0.00, PAPER), (1.00, (215, 211, 202))],
     },
+    "contacto-panel": {
+        # /contacto's left-panel placeholder until a real photo replaces it
+        # (single <Image src> swap — see app/[lang]/contacto/page.tsx).
+        # Deliberately breaks the "every ramp starts at PAPER" rule every
+        # other slot follows: those are bleed panels meant to emerge from the
+        # page background at one edge, but this is a hard-edged, fully
+        # self-contained rectangle with no bleed edge — nothing here touches
+        # --background directly, so there's no blend to protect. It needs to
+        # read as uniformly dark throughout (not light-to-dark), both for
+        # reversed light-on-dark headline text and to reliably trigger
+        # HeaderShell's [data-dark] inversion the moment it scrolls under the
+        # fixed header, which a pale corner would undermine.
+        "seed": 217, "cell": 11, "chars": "classic", "field": 0.46,
+        "size": (1400, 1800),
+        "mask": "Nettyo-Solutions.png", "mask_scale": 1.1, "mask_anchor": "center",
+        "ramp": [(0.00, (24, 72, 66)), (0.5, (14, 48, 44)), (1.00, (8, 26, 24))],
+        # Every other slot's ink is fixed near-black, which is invisible
+        # against a dark ground like this one — only worked on cta/footer
+        # because those sit on light ramps. `ink_color` overrides it to a
+        # light mint so the masked logo actually reads on a dark panel.
+        "ink_color": (120, 230, 214),
+        "ink": 0.6,
+    },
 }
 
 GRAIN = 0.075      # blend weight of the noise layer
@@ -276,7 +299,7 @@ def render(name, spec):
             # One draw call per cell. A whole row drawn as one string advances
             # at the font's own 0.6em width and leaves the right third bare.
             d.text((c * CELL, r * CELL - CELL // 4), ch, font=font,
-                   fill=(18, 24, 26, int(a)))
+                   fill=(*spec.get("ink_color", (18, 24, 26)), int(a)))
 
     path = f"{OUT_DIR}/{name}.avif"
     if spec.get("transparent"):
