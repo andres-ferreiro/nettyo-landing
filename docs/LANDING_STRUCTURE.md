@@ -80,7 +80,7 @@ Narrative flow: **problem → solution → capability → proof → conversion**
 - 3–4 column layout, short statements (strategy doc §26)
 - **Conversion goal:** "Why them and not someone else?"
 
-## 11. FAQ — `[ ]`
+## 11. FAQ — `[x]`
 
 - Added after seeing reference sites — not in the original 12-section brief.
 - Simple accordion, 4-5 questions (process, timeline, pricing approach, data
