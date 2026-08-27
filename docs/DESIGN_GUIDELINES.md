@@ -117,7 +117,7 @@ Pattern-to-section mapping:
 | Technical Credibility (§9) | Hub-and-spoke diagram: central Nettyo mark with real tool logos radiating out (WhatsApp, Stripe, Google Calendar, etc. via Simple Icons), representing integrations |
 | SaaS Portfolio (§7) | Dot-matrix/halftone treatment applied to **our own product screenshots** (not stock portraits) for a distinctive, less-generic-SaaS look |
 | Industries (§8) | Shipped as a hairline tag strip (reusing Portfolio's product categories verbatim) rather than the expandable grid originally sketched here — see `docs/superpowers/specs/2026-08-27-industries-section-design.md`. Kept intentionally light since it's a connective strip, not a full section. |
-| Final CTA (§11) | Pair the contact form with an embedded calendar/booking widget so it reads as "book a slot" rather than "submit into a void" |
+| Final CTA (§12) | Shipped as a two-page hand-off instead of pairing the form on-page: the landing page's closing section (centered block, no form) links to a dedicated `/contacto` page carrying the actual GoHighLevel form + calendar embed — see `docs/superpowers/specs/2026-08-27-final-cta-design.md`. Still reads as "book a slot," just one click further in. |
 | New: FAQ (insert before Final CTA) | Simple accordion, 4-5 questions — answers "can I trust them" right before the ask. Not in the original 12-section list; add it. |
 
 Also worth carrying over as general texture: one deliberate dark section break somewhere in the page (both references do this once, e.g. around the portfolio/case-studies section) for visual rhythm — this is the one exception the design-taste rules allow to the light-theme lock, used exactly once, not alternated randomly.

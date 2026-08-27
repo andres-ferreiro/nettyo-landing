@@ -1,0 +1,341 @@
+{
+  "metadata": {
+    "title": "Nettyo Solutions — Custom Software & AI Automation",
+    "description": "We design and build custom software, AI automation, and SaaS products for businesses in Mexico and the US. We understand how your business runs before we build.",
+    "keywords": [
+      "custom software",
+      "software development",
+      "AI automation",
+      "SaaS products",
+      "integrations",
+      "web and mobile apps",
+      "Ciudad Juarez",
+      "El Paso Texas"
+    ]
+  },
+  "header": {
+    "servicios": "Services",
+    "productos": "Products",
+    "proceso": "Process",
+    "cambiarIdioma": "Change language",
+    "contacto": "Contact",
+    "cta": "Tell us about your process"
+  },
+  "hero": {
+    "headline": [
+      "Unique processes.",
+      "Software that",
+      "adapts to you."
+    ],
+    "subhead": [
+      "We analyze your operation",
+      "and design systems",
+      "that automate it."
+    ],
+    "ctaPrimary": "Tell us about your process",
+    "ctaSecondary": "See products",
+    "capabilities": [
+      "Automation",
+      "Integrations",
+      "Reporting"
+    ]
+  },
+  "clientsMarquee": {
+    "label": "Trusted by"
+  },
+  "problem": {
+    "headline": [
+      "Your operation grew.",
+      "Your tools didn't keep up."
+    ],
+    "supporting": "You see this in how your team works every day.",
+    "painPoints": [
+      {
+        "label": "Spreadsheets",
+        "detail": "Everything lives in Excel, and only you understand the formulas."
+      },
+      {
+        "label": "WhatsApp as a system",
+        "detail": "Decisions and orders get lost in chats."
+      },
+      {
+        "label": "Tools that don't talk to each other",
+        "detail": "Every team uses something different, nothing connects."
+      },
+      {
+        "label": "Manual processes",
+        "detail": "You redo by hand what should already be automated."
+      }
+    ]
+  },
+  "solution": {
+    "headline": "We build software around how you work.",
+    "supporting": "We design the system from your real process, not the other way around.",
+    "visualAlt": "Gradient texture with an ASCII mesh"
+  },
+  "capabilities": {
+    "headline": "What we can build for you.",
+    "supporting": "You're not limited to this list: if your business needs it, we design and build it.",
+    "items": [
+      {
+        "label": "Custom software",
+        "detail": "Systems built around how your business actually operates."
+      },
+      {
+        "label": "Apps and platforms",
+        "detail": "Web or mobile, for your team or your customers."
+      },
+      {
+        "label": "Landing pages and sites",
+        "detail": "A digital presence that also converts."
+      },
+      {
+        "label": "AI-powered automation",
+        "detail": "Repetitive tasks solved without manual work."
+      },
+      {
+        "label": "Hardware + software",
+        "detail": "Connected devices paired with custom systems."
+      },
+      {
+        "label": "Integrations",
+        "detail": "The tools you already use, connected to each other."
+      }
+    ],
+    "cta": "See products"
+  },
+  "process": {
+    "headline": "How we work.",
+    "supporting": "We do not start by writing code. We start by understanding your operation.",
+    "steps": [
+      {
+        "name": "Understand",
+        "detail": "How your company operates today."
+      },
+      {
+        "name": "Analyze",
+        "detail": "Where the time goes."
+      },
+      {
+        "name": "Design",
+        "detail": "The system around your operation."
+      },
+      {
+        "name": "Develop",
+        "detail": "Modern technology, scalable architecture."
+      },
+      {
+        "name": "Implement",
+        "detail": "Deployed and integrated into your team."
+      },
+      {
+        "name": "Improve",
+        "detail": "It evolves as new needs appear."
+      }
+    ]
+  },
+  "portfolio": {
+    "eyebrow": "Products",
+    "headline": "Software we have already built, running every day.",
+    "supporting": "Five of our own platforms, across five different industries.",
+    "cta": "Explore product",
+    "products": [
+      {
+        "slug": "compass",
+        "name": "Compass",
+        "category": "Loyalty programs",
+        "line": "Turn occasional customers into loyal ones.",
+        "url": "https://compass.nettyo.com/promo/es"
+      },
+      {
+        "slug": "mandhy",
+        "name": "Mandhy",
+        "category": "AI automation and CRM",
+        "line": "AI conversations that turn inquiries into appointments.",
+        "url": "https://mandhy.io"
+      },
+      {
+        "slug": "reviw",
+        "name": "Reviw",
+        "category": "Online reputation",
+        "line": "Turn customer feedback into a stronger reputation.",
+        "url": "https://www.reviw.app/"
+      },
+      {
+        "slug": "sanvia",
+        "name": "Sanvia",
+        "category": "Healthcare software",
+        "line": "Digital prescriptions and patient history, without the friction.",
+        "url": "https://sanvia.com.mx/"
+      },
+      {
+        "slug": "clubiit",
+        "name": "Clubiit",
+        "category": "Sports club management",
+        "line": "A club's whole operation, in one place.",
+        "url": "https://www.clubiit.com/"
+      }
+    ]
+  },
+  "industries": {
+    "label": "Industries we've already worked in"
+  },
+  "technicalCredibility": {
+    "headline": "Built so you can trust the engineering.",
+    "stats": [
+      {
+        "value": "24/7",
+        "label": "Infrastructure",
+        "caption": "Actively monitored, around the clock."
+      },
+      {
+        "value": "RBAC",
+        "label": "Access",
+        "caption": "Role-based permissions on every account."
+      },
+      {
+        "value": "AES-256",
+        "label": "Encryption",
+        "caption": "Data protected in transit and at rest."
+      },
+      {
+        "value": "20+ hrs",
+        "label": "Per week",
+        "caption": "Lost to manual work at a typical small business."
+      }
+    ]
+  },
+  "whyNettyo": {
+    "headline": "Why Nettyo.",
+    "supporting": "Five differences you notice in the result.",
+    "items": [
+      {
+        "slug": "understand",
+        "name": "We understand before we build",
+        "detail": "We start by understanding how your business operates, not by defining features."
+      },
+      {
+        "slug": "adapts",
+        "name": "Software adapts to you",
+        "detail": "We design around your existing workflows, not the other way around."
+      },
+      {
+        "slug": "ux",
+        "name": "Product-level UI/UX",
+        "detail": "Internal software should still be clear and good to use."
+      },
+      {
+        "slug": "architecture",
+        "name": "Architecture for real operations",
+        "detail": "Permissions, security, roles and scale from day one."
+      },
+      {
+        "slug": "products",
+        "name": "We build our own products",
+        "detail": "Five platforms launched and running give us the full lifecycle."
+      }
+    ]
+  },
+  "faq": {
+    "headline": "Frequently asked questions.",
+    "supporting": "What people usually ask before we start.",
+    "items": [
+      {
+        "question": "What does the process actually look like?",
+        "answer": "We start by understanding how your business operates, not by writing code. From there we analyze, design, develop, implement, and improve the system together with you."
+      },
+      {
+        "question": "How long does a project take?",
+        "answer": "It depends on scope. After the initial consultation you get a clear timeline before we start, not a generic estimate."
+      },
+      {
+        "question": "How does pricing work?",
+        "answer": "Every project is quoted based on what you actually need. The initial consultation to understand your process is free."
+      },
+      {
+        "question": "How secure is my information?",
+        "answer": "Every system we build uses role-based access control and encrypts data, both in transit and at rest."
+      },
+      {
+        "question": "Does this replace the tools I already use?",
+        "answer": "Not necessarily. We design around what you already use when it makes sense, and connect your tools to each other instead of ripping them out."
+      }
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Let's start",
+    "headline": "Tell us how your business runs today.",
+    "supporting": "No generic proposals — we understand your process before we suggest anything.",
+    "cta": "Tell us your process",
+    "markers": [
+      "No obligation",
+      "24h response",
+      "Free initial consultation"
+    ]
+  },
+  "contacto": {
+    "headline": "Let's talk about your process.",
+    "supporting": "Tell us how your business runs today and we'll follow up with next steps.",
+    "form": {
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Your company name",
+      "phoneLabel": "Phone / WhatsApp",
+      "phonePlaceholder": "+1 000 000 0000",
+      "interestLabel": "What are you interested in?",
+      "interestOptions": [
+        "Custom software",
+        "Apps and platforms",
+        "Landing pages and sites",
+        "AI-powered automation",
+        "Hardware + software",
+        "Integrations",
+        "All of the above"
+      ],
+      "challengeLabel": "What's your biggest challenge right now?",
+      "challengeOptions": [
+        "Everything lives in spreadsheets",
+        "Decisions get lost in WhatsApp/chats",
+        "My tools don't talk to each other",
+        "I repeat by hand what should already be automated"
+      ],
+      "messageLabel": "Tell us about your business",
+      "messagePlaceholder": "How does your business run today? Any detail helps.",
+      "submitCta": "Send",
+      "submitCtaPending": "Sending...",
+      "privacyNote": "We only use your information to respond to your message."
+    },
+    "errors": {
+      "generic": "Something went wrong. Try again or email us at contacto@nettyo.com.",
+      "required": "This field is required.",
+      "invalidEmail": "Enter a valid email.",
+      "invalidPhone": "Enter a valid phone number."
+    },
+    "success": {
+      "headline": "You're set.",
+      "body": "We got your message and will follow up soon to talk about your process.",
+      "bookCta": "Prefer to book a call now?",
+      "bookButton": "Book a call"
+    }
+  },
+  "footer": {
+    "location": "Cd. Juárez, Chihuahua · El Paso, TX — clients worldwide, fully remote.",
+    "navHeading": "Navigation",
+    "productsHeading": "Products",
+    "contactHeading": "Contact",
+    "email": "contacto@nettyo.com",
+    "whatsappDisplay": "+52 657 101 4531",
+    "whatsappHref": "https://wa.me/526571014531",
+    "copyright": "© 2026 Nettyo Solutions."
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "headline": "This page doesn't exist.",
+    "supporting": "The link may be broken or the page moved. Let's get you back to where things actually are.",
+    "cta": "Back to home",
+    "ctaSecondary": "Contact us"
+  }
+}

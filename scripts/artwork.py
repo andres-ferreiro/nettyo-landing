@@ -139,6 +139,18 @@ SLOTS = {
         "ink": 0.55,
         "ramp": [(0.00, PAPER), (1.00, (215, 211, 202))],
     },
+    "not-found": {
+        # Subtle centered watermark behind the 404 page's text — unlike
+        # cta/footer, real headline/body text sits directly on top of this
+        # (centered page, no separate text-free zone to isolate it in), so
+        # ink stays low from the start rather than being dialed back after
+        # a failed contrast check like footer's first attempt.
+        "seed": 404, "cell": 12, "chars": "classic", "field": 0.42,
+        "size": (1400, 1400), "transparent": True,
+        "mask": "Nettyo-Solutions.png", "mask_scale": 0.95, "mask_anchor": "center",
+        "ink": 0.08,
+        "ramp": [(0.00, PAPER), (1.00, (215, 211, 202))],
+    },
     "contacto-panel": {
         # /contacto's left-panel placeholder until a real photo replaces it
         # (single <Image src> swap — see app/[lang]/contacto/page.tsx).

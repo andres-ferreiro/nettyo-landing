@@ -22,10 +22,12 @@ Props: `value: string`, `label: string`, `caption?: string`,
 `variant: "plain" | "glass"`.
 
 Anatomy (same for both variants):
-- **Value** — large, `font-doto` (thin weight), the focal element. Can be
-  a number (`"20+"`) or a short term (`"RBAC"`) — Doto reads fine as
-  either, and forcing every card into a numeric stat is what leads to
-  invented metrics.
+- **Value** — large, `font-doto` (thin weight), the focal element.
+  **Numeric or short alphanumeric code only, ≤7 characters** (`"20+"`,
+  `"24/7"`, `"AES-256"`, `"RBAC"`). Doto is a dot-matrix display face —
+  it renders digits and short codes cleanly but full words become hard
+  to read. Never put a multi-word phrase in this slot; put the
+  explanation in `caption` instead.
 - **Label** — `font-mono`, uppercase, `tracking-wide`, matches the
   existing structural-label spec in `DESIGN_SYSTEM.md` (weight 500, ~15px).
 - **Caption** (optional) — one line, Inter, `--foreground-secondary`.
@@ -47,10 +49,10 @@ Variants:
 
 Four cards, one row, `plain` variant, `--background` page background:
 
-1. **RBAC** / "Role-based access control"
-2. **Multi-tenant** / "Isolated data, one platform"
-3. **Encrypted** / "In transit and at rest"
-4. **20+ hrs/week** / "Lost to manual work at a typical SMB" — the one
+1. **24/7** / "Monitored infrastructure"
+2. **RBAC** / "Role-based access, every account"
+3. **AES-256** / "Encrypted at rest"
+4. **20+ hrs** / "Lost weekly to manual work at a typical SMB" — the one
    illustrative, industry-level stat in the row (not a Nettyo-specific
    claim). Framed as general context, not a measured Nettyo result.
 
@@ -59,6 +61,10 @@ practice — confirm before shipping copy live. Card 4 is deliberately the
 "oh, that's us" hook mixed into an otherwise credibility-focused row, per
 direction to use stats for real persuasive weight rather than as filler,
 while still allowing one creative/illustrative stat.
+
+All four values are numeric or short alphanumeric codes (≤7 characters),
+per the Doto constraint above — none of them ask the dot-matrix face to
+render a full word.
 
 Do not add more cards to this row later "to fill space" — if a fifth
 stat doesn't carry its own weight, leave the row at four.
@@ -70,9 +76,13 @@ stat doesn't carry its own weight, leave the row at four.
   at all).
 - `Grid` (flush), wrapped the same way the Problem-section matrix wraps
   itself (`lg:col-span-4 lg:col-start-3` container carrying the left
-  rule, per `DESIGN_SYSTEM.md`'s "a matrix needs its own wrapper" note),
-  with the four cards laid out as equal columns inside it.
-- Tablet (4-col grid): 2×2.
+  rule, per `DESIGN_SYSTEM.md`'s "a matrix needs its own wrapper" note).
+- Desktop: 2×2, not a single row of 4 — a 4-across row leaves too little
+  width per card at this padding for values like `AES-256` or `20+ hrs`,
+  which wrap to two lines. Verified empirically in-browser (see build
+  notes); 2×2 gives each card the same headroom the reference
+  screenshots show with 2-3 cards per row.
+- Tablet (4-col grid): 2×2 (same as desktop).
 - Mobile (2-col grid): 1 column, stacked.
 - Section headline above the row, same type scale as Problem/Solution
   (e.g. "Construido para que confíes en la ingeniería.").

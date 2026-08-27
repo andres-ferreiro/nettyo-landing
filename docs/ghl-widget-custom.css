@@ -1,0 +1,128 @@
+/* Nettyo Solutions — GHL Neo calendar widget custom CSS
+   Paste into: Calendar settings -> Widget -> "Insertar código personalizado"
+   (only works with the "Nuevo"/Neo widget style, not "Clásico")
+
+   Speculative, not verified against the live widget: GHL doesn't publish
+   Neo's internal class names, and this field's exact sandboxing (raw CSS?
+   wrapped in <style>? sanitized?) is untested. This leans on generic
+   element selectors (button, input, [role="button"], etc.) rather than
+   guessed class names, since those apply regardless of GHL's own markup.
+   The `[class*="..."]` rules are best-effort guesses layered on top —
+   if a rule visibly doesn't apply once pasted in, right-click -> Inspect
+   on the live widget to find the real class and swap it in here.
+
+   If GHL strips a bare stylesheet, wrap this whole block in <style>...</style>
+   and paste that instead — try raw first.
+
+   Tokens mirrored from app/globals.css. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+:root {
+  --nettyo-background: #f1f0ed;
+  --nettyo-surface: #ffffff;
+  --nettyo-foreground: #12181a;
+  --nettyo-foreground-secondary: #6b665e;
+  --nettyo-border: #dfdbd3;
+  --nettyo-accent-strong: #0f766e;
+}
+
+html,
+body,
+* {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
+}
+
+body {
+  background: var(--nettyo-background) !important;
+  color: var(--nettyo-foreground) !important;
+}
+
+/* Radius is 0 everywhere on nettyo.com — hard lock, applied broadly here
+   since GHL's own element classes aren't individually known. */
+button,
+input,
+select,
+textarea,
+[class*="card"],
+[class*="container"],
+[class*="widget"],
+[class*="calendar"] {
+  border-radius: 0 !important;
+}
+
+/* "No borders" request: the outer date/time-slot card and the individual
+   slot buttons both render with visible borders in the live widget. These
+   are the broadest, least-certain guesses in this file — the actual class
+   names for the card wrapper and each slot button are unknown, so this
+   leans on common fragments (card/container/panel for the wrapper, slot/
+   time/day for the buttons) plus a catch-all. If borders persist after
+   pasting this in, inspect one bordered element live and replace the
+   matching selector below with its real class. */
+[class*="card"],
+[class*="container"],
+[class*="panel"],
+[class*="widget"] {
+  border: none !important;
+  box-shadow: none !important;
+}
+[class*="slot"],
+[class*="time"],
+[class*="day"] {
+  border: none !important;
+}
+
+button,
+[role="button"],
+[class*="button"],
+[class*="btn"] {
+  background-color: var(--nettyo-foreground) !important;
+  color: var(--nettyo-background) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  transition: opacity 0.2s ease !important;
+}
+button:hover,
+[role="button"]:hover,
+[class*="button"]:hover,
+[class*="btn"]:hover {
+  opacity: 0.9 !important;
+}
+
+/* Selected date/time + other primary accents — the least certain block,
+   most likely to need real class names once you can see the DOM. */
+[class*="selected"],
+[class*="active"],
+[aria-selected="true"] {
+  background-color: var(--nettyo-accent-strong) !important;
+  color: #ffffff !important;
+  border-color: var(--nettyo-accent-strong) !important;
+}
+
+/* "Enter details" form fields */
+input,
+textarea,
+select {
+  background: var(--nettyo-surface) !important;
+  border: 1px solid var(--nettyo-border) !important;
+  color: var(--nettyo-foreground) !important;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--nettyo-accent-strong) !important;
+  outline-offset: 2px !important;
+  border-color: var(--nettyo-accent-strong) !important;
+}
+
+label,
+[class*="label"] {
+  color: var(--nettyo-foreground-secondary) !important;
+  font-weight: 500 !important;
+}

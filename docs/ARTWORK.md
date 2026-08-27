@@ -26,6 +26,7 @@ there, not writing new image code.
 | `product-sanvia` | 16:9 | violet | 11 | lines | 0.44 |
 | `product-clubiit` | 16:9 | magenta | 17 | round | 0.56 |
 | `footer` | 4:1 | flat neutral, masked by "NETTYO SOLUTIONS" text | 13 | soft | 0.55 |
+| `contacto-panel` | 7:9 | near-black teal, masked by the Nettyo mark, light ink | 11 | classic | 0.46 |
 
 **A different seed is not enough to make panels look different.** The seed
 varies the cloud structure underneath, but if every slot shares one cell size,
@@ -118,6 +119,33 @@ earlier version's flat neutral ramp read as an unwanted background
 rectangle. AVIF's alpha channel round-trips through Pillow fine — verified
 by reading a saved file back and checking a corner pixel is `(0,0,0,0)`,
 not assumed.
+
+### `ink_color`: light ink for a dark ramp
+
+Glyph ink defaults to near-black (`(18, 24, 26)`), which is invisible
+against a dark ramp — every slot before `contacto-panel` sat on a light
+ramp (PAPER-based), so this never came up. `"ink_color": (r, g, b)`
+overrides it. `contacto-panel` needs to read as uniformly dark throughout
+(see its own comment in `SLOTS` for why it also breaks the
+"every ramp starts at PAPER" rule), so its mask uses a light mint
+(`(120, 230, 214)`) instead — the mark shows as a lighter tint on dark
+ground rather than dark-on-dark invisibility.
+
+### Deliberately breaking "every ramp starts at PAPER"
+
+`contacto-panel` is the one slot whose ramp never touches `PAPER` at all.
+Every other slot is a **bleed panel** — meant to visually emerge from the
+page background at one edge, which is why they all start at `PAPER` and
+land on a saturated corner. `contacto-panel` is architecturally different:
+a hard-edged, fully self-contained rectangle (the left half of a
+fullscreen split page) with no bleed edge, so there's no blend into
+`--background` to protect. It needs to read as consistently dark across
+its whole area — for reversed light-on-dark headline text, and to reliably
+trigger `HeaderShell`'s `[data-dark]` inversion the instant it scrolls
+under the fixed header, which a pale corner (the normal PAPER-start
+behaviour) would undermine. If a future slot is also a self-contained
+panel rather than a bleed, this same reasoning applies — it isn't unique
+to this one page.
 
 ## Four things the generator does that are not obvious
 
