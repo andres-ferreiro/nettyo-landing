@@ -86,6 +86,26 @@ chrome rather than a scrollable content section).
 - `ARTWORK.md`: document `mask_text` alongside the existing `mask`
   section, and add the `footer` row to the slot table.
 
+## Revision (2026-08-27): two-zone layout, not artwork behind link text
+
+Built as designed, then hit a real contrast problem verifying it: real
+link text sitting directly on the masked artwork failed AA even with the
+glyph ink dialed down to near-invisible (`ink: 0.03` still measured
+3.87:1 against `--foreground-secondary`; the bare ramp's darkest stop
+alone measured only 4.13:1, before any glyph ink). Chasing this by
+shrinking `ink` further doesn't converge — it was heading toward
+literally removing the artwork.
+
+Fixed by restructuring `Footer.tsx` into two zones instead: a solid
+`--background` block holding all real content (logo, nav, product links,
+contact, copyright — nothing behind it), and a separate text-free
+decorative strip below it holding the artwork at full visual strength.
+Once nothing readable overlaps the mask, it's decorative (`alt=""`) and
+exempt from text-contrast rules entirely — `ink` went back up to `0.55`
+for real visual presence instead of a chased-to-invisible compromise. See
+`docs/ARTWORK.md`'s "Text masks and `ink`" section for the full generator
+mechanics (also added `mask_text` and `mask_peek`, both new).
+
 ## Out of scope
 
 - No social links (none exist yet).

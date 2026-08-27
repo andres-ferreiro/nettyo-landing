@@ -19,13 +19,13 @@ there, not writing new image code.
 | Slot | Ratio | Colour | Cell | Glyphs | Field |
 |---|---|---|---|---|---|
 | `solution` | 4:5 | mint to deep teal | 11 | classic | 0.50 |
-| `cta` | 4:5 | warm sand to teal | 13 | soft | 0.55 |
+| `cta` | 2.4:1 | brand teal (accent ramp), masked by the Nettyo mark | 13 | soft | 0.55 |
 | `product-compass` | 16:9 | crimson | 12 | classic | 0.50 |
 | `product-mandhy` | 16:9 | slate to near-black | 9 | tech | 0.34 |
 | `product-reviw` | 16:9 | mint to deep green | 15 | soft | 0.62 |
 | `product-sanvia` | 16:9 | violet | 11 | lines | 0.44 |
 | `product-clubiit` | 16:9 | magenta | 17 | round | 0.56 |
-| `cta` | 2.4:1 | brand teal (accent ramp) | 13 | soft | 0.55 |
+| `footer` | 4:1 | flat neutral, masked by "NETTYO SOLUTIONS" text | 13 | soft | 0.55 |
 
 **A different seed is not enough to make panels look different.** The seed
 varies the cloud structure underneath, but if every slot shares one cell size,
@@ -71,6 +71,39 @@ minimum. Stopping the ramp at `accent` (`#2DD4BF`) instead keeps the whole
 brand ramp intact while guaranteeing every sampled point clears AA
 (verified empirically at 5.8:1 worst-case across the text-safe zone, not
 eyeballed).
+
+### Text masks and `ink`
+
+`"mask_text": "SOME STRING"` (with an internal `\n` for multiple stacked
+lines) draws the string in a heavy system face
+(`Arial Black.ttf` — a silhouette source, not a rendered site font) instead
+of loading an image, then reuses the same alpha-sampling path as an image
+mask. It needs different scaling logic: an image mask sizes off
+`min(W, H)` (right for a roughly-square mark), but a wordmark's natural
+shape is wide, so text masks size off canvas *width* instead
+(`mask_scale` there means "fraction of `W`", not "fraction of
+`min(W, H)`").
+
+A **single wide line has a very flat aspect ratio** — width-filling it and
+then cropping to a "bottom peek" leaves almost no height, which produced
+an illegible sliver on the first attempt at `footer`. Stacking the text
+onto multiple lines (`"NETTYO\nSOLUTIONS"`) is what makes a peeking crop
+read as "big" rather than "a thin band." `mask_peek` (fraction of the
+mask's height, from the top, that stays in frame before the rest crops
+away below; default `0.5`) needs to be tuned past the halfway point for a
+multi-line mask, or the crop line lands exactly on the gap between lines
+and the second line never appears at all — `footer` uses `0.72`.
+
+**`ink`** (default `1.0`) scales the glyph overlay's alpha. It exists
+because chasing AA contrast for `footer` by shrinking `ink` toward zero
+(down to `0.03`) never actually cleared 4.5:1 against
+`--foreground-secondary` — even the bare ramp's darkest stop, with *no*
+glyph ink at all, measured only 4.13:1 on its own. **`ink` is not a
+contrast fix for artwork that real text sits on top of** — dial the ramp
+itself lighter for that, or keep readable text off the artwork entirely
+(what `Footer.tsx` does: real links sit in a solid `--background` zone,
+and the mask lives in a separate text-free strip below it, where full
+`ink` is safe because nothing readable ever overlaps it).
 
 ## Four things the generator does that are not obvious
 
