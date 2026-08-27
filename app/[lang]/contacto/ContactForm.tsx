@@ -127,7 +127,7 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
         <legend className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
           {t.form.interestLabel}
         </legend>
-        <div className="mt-1.5 flex flex-wrap gap-1.5">
+        <div className="mt-2.5 flex flex-wrap gap-x-3 gap-y-2.5">
           {t.form.interestOptions.map((label, i) => (
             <PillOption key={label} name="interest" value={String(i)} label={label} />
           ))}
@@ -139,7 +139,7 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
         <legend className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
           {t.form.challengeLabel}
         </legend>
-        <div className="mt-1.5 flex flex-wrap gap-1.5">
+        <div className="mt-2.5 flex flex-wrap gap-x-3 gap-y-2.5">
           {t.form.challengeOptions.map((label, i) => (
             <PillOption key={label} name="challenge" value={String(i)} label={label} />
           ))}

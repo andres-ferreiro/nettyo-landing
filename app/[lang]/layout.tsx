@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Geist_Mono, Doto } from "next/font/google";
 import { lang } from "next/root-params";
 import "../globals.css";
@@ -86,6 +87,11 @@ export default async function RootLayout({
         <OrganizationSchema />
         {children}
       </body>
+      <Script
+        src="https://cloud.umami.is/script.js"
+        data-website-id="1300d753-bfc2-4297-864a-67163980891b"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }

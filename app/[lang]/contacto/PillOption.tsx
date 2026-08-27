@@ -23,7 +23,7 @@ export default function PillOption({
         defaultChecked={defaultChecked}
         className="peer sr-only"
       />
-      <span className="block border border-border px-2.5 py-1 font-mono text-[11px] tracking-wide text-foreground-secondary uppercase transition-colors peer-checked:border-accent-strong peer-checked:bg-accent-soft peer-checked:text-accent-strong peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent-strong">
+      <span className="block border border-border px-3.5 py-2 font-mono text-[11px] tracking-wide text-foreground-secondary uppercase transition-colors peer-checked:border-accent-strong peer-checked:bg-accent-soft peer-checked:text-accent-strong peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent-strong">
         {label}
       </span>
     </label>
