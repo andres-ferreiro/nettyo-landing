@@ -5,6 +5,7 @@ import Grid from "../Grid";
 import HeroBrandMark from "./HeroBrandMark";
 import FadeIn from "../FadeIn";
 import TypingHeadline from "../TypingHeadline";
+import HeroQr from "./HeroQr";
 import { getDictionary } from "../../[lang]/dictionaries";
 
 export default async function Hero() {
@@ -12,6 +13,7 @@ export default async function Hero() {
     getDictionary().then((d) => d.hero),
     lang(),
   ]);
+  const showQr = process.env.SHOW_HERO_QR === "true";
 
   return (
     <section className="relative flex flex-1 flex-col justify-center overflow-hidden">
@@ -84,6 +86,8 @@ export default async function Hero() {
           </a>
         </FadeIn>
       </Grid>
+
+      {showQr && <HeroQr />}
     </section>
   );
 }
