@@ -15,11 +15,13 @@ const clients = [
   },
   { file: "casarosa.png", name: "Casa Rosa", ratio: 1046 / 285 },
   { file: "chazzo.png", name: "Chazzo", ratio: 1536 / 569 },
+  { file: "interstellar.png", name: "Interstellar Club", ratio: 586 / 316, scale: 1.4 },
   { file: "kinei.png", name: "Kinei", ratio: 2000 / 625 },
   { file: "la-marquesa.png", name: "La Marquesa", ratio: 360 / 127 },
   { file: "patitadeperro.png", name: "Patita de Perro", ratio: 1069 / 318 },
-  { file: "por-k.png", name: "POR-K", ratio: 1 },
+  { file: "pork-horizontal.png", name: "POR-K", ratio: 1643 / 398 },
   { file: "suculenta.png", name: "Suculenta", ratio: 1046 / 285 },
+  { file: "vibrant-logo.png", name: "Vibrant Smile Dental", ratio: 1000 / 266 },
 ];
 
 const LOGO_HEIGHT = 32;
@@ -30,11 +32,14 @@ function LogoRow({ ariaHidden }: { ariaHidden?: boolean }) {
       className="flex shrink-0 items-center gap-12 pr-12"
       aria-hidden={ariaHidden}
     >
-      {clients.map(({ file, name, ratio, opaqueBg }) => (
+      {clients.map(({ file, name, ratio, opaqueBg, scale = 1 }) => (
         <div
           key={file}
           className="relative shrink-0"
-          style={{ height: LOGO_HEIGHT, width: LOGO_HEIGHT * ratio }}
+          style={{
+            height: LOGO_HEIGHT * scale,
+            width: LOGO_HEIGHT * ratio * scale,
+          }}
         >
           <Image
             src={`/media/clients/${file}`}
