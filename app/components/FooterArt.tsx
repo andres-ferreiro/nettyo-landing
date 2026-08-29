@@ -1,34 +1,27 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 
-// The peeking wordmark starts mostly hidden — only a hint of "SOLUTIONS"
-// showing — and slides up into full view as the visitor scrolls to the true
-// end of the page. Justification: a small "you've reached the bottom"
-// payoff, not motion for its own sake. Transform-only (translateY), so it
-// composites instead of repainting on scroll.
+// The wordmark art (public/media/footer.avif) is the full, uncropped
+// "NETTYO\nSOLUTIONS" mark (2400x600). Two things kept this from reading
+// well: letting it bleed full-width meant the strip's own height (and the
+// space it ate on the page) kept growing with the viewport forever, and the
+// ink is faint by design (see scripts/artwork.py), so it needed a touch more
+// contrast than the bare page background gives it.
+//
+// `max-w-[1600px]` caps how tall the strip can ever get, matching Grid's own
+// cap so the two don't drift apart. `aspect-[2400/460]` shows ~77% of the
+// image (object-top keeps NETTYO complete and cuts into SOLUTIONS rather
+// than the reverse) — short of the full 600px so it still reads as bleeding
+// off the bottom, not floating in its own box.
 export default function FooterArt() {
-  const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end end"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [48, 0]);
-
   return (
-    <div ref={ref} className="relative h-32 overflow-hidden sm:h-40 lg:h-56">
-      <motion.div className="absolute inset-0" style={reduce ? undefined : { y }}>
-        <Image
-          src="/media/footer.avif"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-bottom"
-        />
-      </motion.div>
+    <div className="relative mx-auto aspect-[2400/460] w-full max-w-[1600px] overflow-hidden">
+      <Image
+        src="/media/footer.avif"
+        alt=""
+        fill
+        sizes="(min-width: 1600px) 1600px, 100vw"
+        className="object-cover object-top"
+      />
     </div>
   );
 }

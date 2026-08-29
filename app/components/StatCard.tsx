@@ -20,7 +20,7 @@ export default function StatCard({
 
   return (
     <div className={`flex h-full flex-col gap-3 p-8 lg:p-10 ${surface}`}>
-      <span className="font-doto text-5xl font-thin tracking-tight text-foreground lg:text-6xl">
+      <span className="font-doto text-5xl font-thin tracking-tight text-foreground break-words lg:text-6xl">
         {value}
       </span>
       <span className="font-mono text-[15px] font-medium tracking-wide text-foreground uppercase">

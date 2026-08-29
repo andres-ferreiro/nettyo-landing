@@ -2,7 +2,9 @@
 // peer-checked — keeps the whole form FormData-driven with zero extra client
 // state for the single-selects. Square (rounded-none), matching Industries.tsx's
 // tag treatment rather than the rounded pills of the reference this was
-// adapted from.
+// adapted from. The type size is a deliberate 11px, so the box grows below
+// sm instead: at py-2 these measured 35px tall with 10px between rows, which
+// is under the 44px touch minimum on the one screen that has to convert.
 export default function PillOption({
   name,
   value,
@@ -23,7 +25,7 @@ export default function PillOption({
         defaultChecked={defaultChecked}
         className="peer sr-only"
       />
-      <span className="block border border-border px-3.5 py-2 font-mono text-[11px] tracking-wide text-foreground-secondary uppercase transition-colors peer-checked:border-accent-strong peer-checked:bg-accent-soft peer-checked:text-accent-strong peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent-strong">
+      <span className="block border border-border px-3.5 py-3.5 font-mono text-[11px] sm:py-2 tracking-wide text-foreground-secondary uppercase transition-colors peer-checked:border-accent-strong peer-checked:bg-accent-soft peer-checked:text-accent-strong peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent-strong">
         {label}
       </span>
     </label>

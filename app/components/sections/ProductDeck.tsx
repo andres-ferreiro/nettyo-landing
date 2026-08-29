@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
-  useMotionTemplate,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -22,11 +21,13 @@ function DeckCard({
   cta,
   index,
   pos,
+  warm,
 }: {
   product: Product;
   cta: string;
   index: number;
   pos: MotionValue<number>;
+  warm: boolean;
 }) {
   // Signed distance from the focused card. Negative is above, positive below,
   // so the deck fans in both directions around a centred card.
@@ -43,7 +44,7 @@ function DeckCard({
   const scale = useTransform(
     d,
     [-2, -1, -DWELL, 0, DWELL, 1, 2],
-    [0.86, 0.94, 1, 1, 1, 0.94, 0.86],
+    [0.82, 0.92, 1, 1, 1, 0.92, 0.82],
   );
 
   const blurPx = useTransform(
@@ -51,13 +52,26 @@ function DeckCard({
     [-2, -1, -DWELL, 0, DWELL, 1, 2],
     [4, 2, 0, 0, 0, 2, 4],
   );
-  const filter = useMotionTemplate`blur(${blurPx}px)`;
+  // Never emit `blur(0px)`. An identity filter still forces the card onto its
+  // own compositing layer, and the focused card is the one element here whose
+  // transform resolves to `none` — so that filter is the only thing promoting
+  // the card a visitor is actually looking at. Cheap to drop either way; it is
+  // also a candidate cause of a reported "focused card renders as an empty
+  // dark panel", which was never reproduced locally.
+  const filter = useTransform(blurPx, (v) =>
+    v < 0.05 ? "none" : `blur(${v}px)`,
+  );
   // Darkens toward the section ground, so a receding card sinks into the page
   // rather than turning fully see-through.
+  // Note the asymmetry with the values above: what actually shows of a
+  // neighbour is the strip nearest the focused card, and on that strip the
+  // gradient below is already at full strength. 0.5 there rendered the only
+  // visible part of the card as a near-black band, which is what made the
+  // stack read as nothing happening on a phone.
   const scrim = useTransform(
     d,
     [-2, -1, -DWELL, 0, DWELL, 1, 2],
-    [0.72, 0.5, 0, 0, 0, 0.5, 0.72],
+    [0.66, 0.4, 0, 0, 0, 0.4, 0.66],
   );
   // A little transparency where cards overlap, layered under the scrim rather
   // than replacing it: pure opacity was what let two artworks bleed into one
@@ -87,7 +101,7 @@ function DeckCard({
       }
       style={{ y, scale, opacity, zIndex, pointerEvents, filter }}
     >
-      <ProductCard product={product} cta={cta} />
+      <ProductCard product={product} cta={cta} warm={warm} />
 
       {/* Sits above the card it belongs to, never above the focused one,
           because each layer paints in its own stacking context. */}
@@ -125,10 +139,30 @@ function DeckStage({
   // derived value at once.
   const pos = useSpring(raw, { stiffness: 170, damping: 28, mass: 0.3 });
 
+  // Deliberately the first scroll gesture rather than an observer on the
+  // deck: an observer is the same class of mechanism as the per-card lazy
+  // loading this exists to replace, so it would inherit the same failure.
+  // A scroll listener cannot be defeated by a card being transparent or
+  // transformed, and the deck sits several viewports down, so one gesture
+  // still buys the artwork plenty of time. Visitors who never scroll never
+  // pay for it.
+  const [warm, setWarm] = useState(false);
+  useEffect(() => {
+    if (warm) return;
+    const on = () => setWarm(true);
+    window.addEventListener("scroll", on, { passive: true, once: true });
+    return () => window.removeEventListener("scroll", on);
+  }, [warm]);
+
   return (
     <div ref={wrapRef} style={{ height: `${products.length * 66}vh` }}>
-      {/* Full-height stage so the fanned neighbours have room above and below
-          the focused card without colliding with the section edges. */}
+      {/* Full-height stage so `items-center` centers against the whole
+          viewport — shrinking this instead of the card itself just pins the
+          centered box to the top and leaves dead space below it. Note the
+          card must stay well under half this height for the fan to be
+          visible at all: `y` below is a percentage of the card's own height,
+          so a card that fills the stage also throws its neighbours clean off
+          the screen. That budget lives in ProductCard's aspect ratio. */}
       <div className="sticky top-0 flex h-[100svh] items-center">
         <div className="relative w-full">
           {products.map((p, i) => (
@@ -138,6 +172,7 @@ function DeckStage({
               cta={cta}
               index={i}
               pos={pos}
+              warm={warm}
             />
           ))}
         </div>
@@ -154,20 +189,14 @@ export default function ProductDeck({
   cta: string;
 }) {
   const reduce = useReducedMotion();
-  const [wide, setWide] = useState(false);
 
-  // The deck only makes sense where there is room for it. Below lg, and under
-  // reduced motion, the same cards render as a plain list: one DOM, no
-  // duplicated links, nothing that needs scrolling to become readable.
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setWide(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  if (!wide || reduce) {
+  // Card geometry is percentage- and aspect-ratio-driven (not fixed pixel
+  // values), so the stack reads fine at any viewport width — the deck used
+  // to be lg-only, but nothing about it actually depends on desktop space.
+  // Reduced motion is the one real reason to fall back to a plain list: one
+  // DOM, no scroll-linked positioning, nothing that needs scrolling to
+  // become readable.
+  if (reduce) {
     return (
       <div className="flex flex-col gap-10">
         {products.map((p) => (

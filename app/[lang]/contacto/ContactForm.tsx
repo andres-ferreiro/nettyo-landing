@@ -76,7 +76,7 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
         <p className="border border-danger px-4 py-2 text-sm text-danger">{state.message}</p>
       )}
 
-      <div className="grid grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
         <FormField
           name="name"
           label={t.form.nameLabel}
@@ -93,11 +93,11 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
           error={errors?.email}
         />
       </div>
-      <div className="grid grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
         <div>
           <label
             htmlFor="phone-input"
-            className="font-mono text-xs tracking-wide text-foreground-secondary uppercase"
+            className="font-mono text-xs tracking-wide text-foreground uppercase"
           >
             {t.form.phoneLabel}
             <span aria-hidden> *</span>
@@ -124,7 +124,7 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
       </div>
 
       <fieldset>
-        <legend className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
+        <legend className="font-mono text-xs tracking-wide text-foreground uppercase">
           {t.form.interestLabel}
         </legend>
         <div className="mt-2.5 flex flex-wrap gap-x-3 gap-y-2.5">
@@ -136,7 +136,7 @@ export default function ContactForm({ t, locale }: { t: Dict; locale: string }) 
       </fieldset>
 
       <fieldset>
-        <legend className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
+        <legend className="font-mono text-xs tracking-wide text-foreground uppercase">
           {t.form.challengeLabel}
         </legend>
         <div className="mt-2.5 flex flex-wrap gap-x-3 gap-y-2.5">

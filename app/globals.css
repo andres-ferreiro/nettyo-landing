@@ -46,6 +46,14 @@ body {
   color: var(--foreground);
 }
 
+/* Every in-page nav target clears the fixed 64px header. Without this a
+   hash jump parks the section's own headline underneath it — which matters
+   most on mobile, where the hash links in MobileNav are the only navigation
+   there is. */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 /* The fixed header floats over both light and dark sections. It reads its
    colours from these, and HeaderShell flips them via [data-over-dark]. */
 [data-header] {

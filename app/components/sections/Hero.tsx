@@ -32,7 +32,7 @@ export default async function Hero() {
         <div className="absolute top-16 right-0 left-0 border-t border-dashed border-border" />
       </div>
 
-      <Grid className="relative w-full pt-44 pb-16">
+      <Grid className="relative w-full pt-28 pb-16 sm:pt-36 lg:pt-44">
         <span className="pointer-events-none absolute top-16 -left-2 hidden h-4 w-4 border-l border-t border-accent-strong lg:block" />
         <span className="pointer-events-none absolute top-16 right-4 hidden h-2 w-2 -translate-y-1/2 rotate-45 bg-accent-strong lg:block lg:right-0" />
 
@@ -47,7 +47,7 @@ export default async function Hero() {
           <FadeIn delay={0}>
             <h1
               aria-label={t.headline.join(" ")}
-              className="text-4xl font-medium tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+              className="text-5xl font-medium tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             >
               <TypingHeadline lines={t.headline} />
             </h1>

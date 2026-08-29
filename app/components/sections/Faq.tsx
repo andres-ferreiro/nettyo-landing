@@ -23,7 +23,7 @@ export default async function Faq() {
   };
 
   return (
-    <section className="border-b border-rule py-24 lg:py-32">
+    <section className="border-b border-rule bg-white py-24 lg:py-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -43,7 +43,7 @@ export default async function Faq() {
             <GridCell key={question} index={i} perRow={{ base: 1, sm: 2, lg: 2 }}>
               <FadeIn delay={0.06 + i * 0.06}>
                 <details className="group">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 marker:content-none">
+                  <summary className="-my-3 flex cursor-pointer list-none items-start justify-between gap-4 py-3 marker:content-none">
                     <span className="text-base font-medium text-foreground">{question}</span>
                     <span
                       aria-hidden

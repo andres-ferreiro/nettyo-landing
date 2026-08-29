@@ -19,7 +19,9 @@
     "proceso": "Process",
     "cambiarIdioma": "Change language",
     "contacto": "Contact",
-    "cta": "Tell us about your process"
+    "cta": "Tell us about your process",
+    "abrirMenu": "Open menu",
+    "cerrarMenu": "Close menu"
   },
   "hero": {
     "headline": [

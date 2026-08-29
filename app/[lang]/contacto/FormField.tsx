@@ -18,14 +18,18 @@ export default function FormField({
   required?: boolean;
   error?: string;
 }) {
+  // text-base below sm is not a type choice: iOS Safari zooms the viewport
+  // whenever a focused input is under 16px, and never zooms back out — on
+  // the first field of the site's only form. py-2.5 + 16px type also lifts
+  // the control to a 44px touch target.
   const fieldClass =
-    "w-full border border-border bg-transparent px-3 py-2 text-sm text-foreground placeholder:text-foreground-secondary/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong";
+    "w-full border border-border bg-transparent px-3 py-2.5 text-base text-foreground placeholder:text-foreground-secondary/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-strong sm:py-2 sm:text-sm";
 
   return (
     <div>
       <label
         htmlFor={name}
-        className="font-mono text-xs tracking-wide text-foreground-secondary uppercase"
+        className="font-mono text-xs tracking-wide text-foreground uppercase"
       >
         {label}
         {required && <span aria-hidden> *</span>}

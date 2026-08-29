@@ -48,8 +48,8 @@ function LogoRow({ ariaHidden }: { ariaHidden?: boolean }) {
             sizes="150px"
             className={
               opaqueBg
-                ? "object-contain grayscale opacity-60 transition duration-300 hover:opacity-100 hover:grayscale-0"
-                : "object-contain brightness-0 opacity-45 transition duration-300 hover:opacity-100 hover:brightness-100"
+                ? "object-contain grayscale opacity-80 transition duration-300 sm:opacity-60 hover:opacity-100 hover:grayscale-0"
+                : "object-contain brightness-0 opacity-70 transition duration-300 sm:opacity-45 hover:opacity-100 hover:brightness-100"
             }
           />
         </div>
@@ -62,7 +62,7 @@ export default async function ClientsMarquee() {
   const t = (await getDictionary()).clientsMarquee;
 
   return (
-    <section className="border-b border-border py-12">
+    <section className="border-b border-border bg-surface py-12">
       <Grid className="items-center">
         <span className="col-span-2 font-mono text-xs tracking-wider text-foreground-secondary uppercase sm:col-span-4 lg:col-span-2 lg:col-start-1">
           {t.label}
@@ -77,7 +77,7 @@ export default async function ClientsMarquee() {
               "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           }}
         >
-          <div className="flex w-fit animate-[marquee-scroll_50s_linear_infinite] motion-reduce:animate-none">
+          <div className="flex w-fit origin-left scale-[0.92] animate-[marquee-scroll_65s_linear_infinite] motion-reduce:animate-none sm:scale-100 sm:animate-[marquee-scroll_50s_linear_infinite]">
             <LogoRow />
             <LogoRow ariaHidden />
           </div>

@@ -10,17 +10,17 @@ import { getDictionary } from "../../[lang]/dictionaries";
 // Sources live in public/media/custom-icons; public/media/icons holds the
 // cropped, scale-normalized, background-matched versions the page uses.
 const illustrations = [
-  "/media/icons/3.webp", // Hojas de calculo: document becoming structured rows
-  "/media/icons/4.webp", // WhatsApp como sistema
-  "/media/icons/2.webp", // Herramientas que no se hablan: the routing hub
-  "/media/icons/1.webp", // Procesos manuales: manual checklist and funnel
+  "/media/icons/b3.webp", // Hojas de calculo: document becoming structured rows
+  "/media/icons/b4.webp", // WhatsApp como sistema
+  "/media/icons/b2.webp", // Herramientas que no se hablan: the routing hub
+  "/media/icons/b1.webp", // Procesos manuales: manual checklist and funnel
 ];
 
 export default async function Problem() {
   const t = (await getDictionary()).problem;
 
   return (
-    <section className="relative border-b border-rule py-24 lg:py-32">
+    <section className="relative border-b border-rule bg-surface py-24 lg:py-32">
       {/* Bleeds to both viewport edges behind the lower matrix row. Desktop
           only: on a tall single-column mobile stack it is just noise. */}
       <HalftoneBand className="inset-x-0 top-[55%] hidden h-[38%] lg:block" />
@@ -46,12 +46,12 @@ export default async function Problem() {
         {/* The matrix needs its own wrapper: as direct grid children the
             second row would wrap back under the headline column instead of
             staying in columns 3-6. */}
-        <div className="col-span-2 grid grid-cols-1 border-dashed border-rule sm:col-span-4 sm:grid-cols-2 lg:col-span-4 lg:col-start-3 lg:border-l">
+        <div className="col-span-2 grid grid-cols-2 border-dashed border-rule sm:col-span-4 lg:col-span-4 lg:col-start-3 lg:border-l">
           {t.painPoints.map(({ label, detail }, i) => (
             <GridCell
               key={label}
               index={i}
-              perRow={{ base: 1, sm: 2, lg: 2 }}
+              perRow={{ base: 2, sm: 2, lg: 2 }}
               className="lg:min-h-[280px]"
             >
               <FadeIn
@@ -65,7 +65,7 @@ export default async function Problem() {
                     width={104}
                     height={104}
                     sizes="104px"
-                    className="h-[104px] w-[104px] shrink-0"
+                    className="h-16 w-16 shrink-0 sm:h-[104px] sm:w-[104px]"
                   />
                   <h3 className="mt-12 font-mono text-[15px] leading-5 font-medium tracking-wide text-foreground uppercase lg:mt-auto">
                     {label}

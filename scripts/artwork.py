@@ -127,16 +127,16 @@ SLOTS = {
         # (decorative, `alt=""`) — that's what makes a visible `ink` safe
         # here after chasing it toward zero failed on the earlier
         # painted-panel version.
-        "seed": 91, "cell": 13, "chars": "soft", "field": 0.55,
+        "seed": 91, "cell": 9, "chars": "soft", "field": 0.55,
         "size": (2400, 600), "transparent": True,
+        # Full two-line mark, uncropped — at this scale it already fits the
+        # canvas (589px tall in a 600px canvas), so there's no mask_peek/
+        # mask_anchor trick to keep in sync with Footer.tsx. The "peeking"
+        # look comes entirely from CSS on the display side: a short
+        # object-cover/object-bottom strip crops the top of this image off,
+        # not the source file itself.
         "mask_text": "NETTYO\nSOLUTIONS", "mask_scale": 0.85,
-        # 0.72 is the *maximum* reveal, reached only once a visitor scrolls
-        # to the true end of the page (Footer.tsx animates a translateY on
-        # this image via scroll progress) — baked into the source once,
-        # rather than generating two variants, since the reveal is a CSS
-        # transform on top of this fixed image.
-        "mask_anchor": "bottom", "mask_peek": 0.72,
-        "ink": 0.55,
+        "ink": 1.9,
         "ramp": [(0.00, PAPER), (1.00, (215, 211, 202))],
     },
     "not-found": {

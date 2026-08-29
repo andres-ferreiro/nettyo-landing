@@ -18,7 +18,7 @@ export default async function Footer() {
 
   return (
     <footer className="border-t border-rule">
-      <div className="bg-background py-16 lg:py-20">
+      <div className="bg-background py-12 lg:py-16">
         <Grid>
           <div className="col-span-2 sm:col-span-4 lg:col-span-2">
             <span className="flex items-center gap-2">
@@ -43,24 +43,24 @@ export default async function Footer() {
             <h3 className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
               {t.navHeading}
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-1">
               <li>
-                <a href="#capacidades" className="text-sm text-foreground hover:text-accent-strong">
+                <a href="#capacidades" className="inline-block py-2 text-sm text-foreground hover:text-accent-strong">
                   {header.servicios}
                 </a>
               </li>
               <li>
-                <a href="#productos" className="text-sm text-foreground hover:text-accent-strong">
+                <a href="#productos" className="inline-block py-2 text-sm text-foreground hover:text-accent-strong">
                   {header.productos}
                 </a>
               </li>
               <li>
-                <a href="#proceso" className="text-sm text-foreground hover:text-accent-strong">
+                <a href="#proceso" className="inline-block py-2 text-sm text-foreground hover:text-accent-strong">
                   {header.proceso}
                 </a>
               </li>
               <li>
-                <a href="#contacto" className="text-sm text-foreground hover:text-accent-strong">
+                <a href="#contacto" className="inline-block py-2 text-sm text-foreground hover:text-accent-strong">
                   {header.contacto}
                 </a>
               </li>
@@ -71,14 +71,14 @@ export default async function Footer() {
             <h3 className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
               {t.productsHeading}
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-1">
               {products.map(({ slug, name, url }) => (
                 <li key={slug}>
                   <a
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-foreground hover:text-accent-strong"
+                    className="inline-block py-2 text-sm text-foreground hover:text-accent-strong"
                   >
                     {name}
                   </a>
@@ -91,9 +91,9 @@ export default async function Footer() {
             <h3 className="font-mono text-xs tracking-wide text-foreground-secondary uppercase">
               {t.contactHeading}
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-1">
               <li>
-                <a href={`mailto:${t.email}`} className="text-sm text-foreground hover:text-accent-strong">
+                <a href={`mailto:${t.email}`} className="inline-block py-2 text-sm text-foreground hover:text-accent-strong">
                   {t.email}
                 </a>
               </li>
@@ -102,7 +102,7 @@ export default async function Footer() {
                   href={t.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-foreground hover:text-accent-strong"
+                  className="inline-block py-2 text-sm text-foreground hover:text-accent-strong"
                 >
                   {t.whatsappDisplay}
                 </a>
@@ -116,7 +116,7 @@ export default async function Footer() {
           </div>
         </Grid>
 
-        <Grid className="mt-12">
+        <Grid className="mt-10">
           <div className="col-span-2 border-t border-rule pt-6 sm:col-span-4 lg:col-span-6">
             <p className="font-mono text-xs tracking-wide text-foreground-secondary">
               {t.copyright}

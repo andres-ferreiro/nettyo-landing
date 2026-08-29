@@ -7,6 +7,7 @@ import {
   Sparkle,
   Cpu,
   Plugs,
+  ArrowRight,
 } from "@phosphor-icons/react";
 import { useReducedMotion } from "motion/react";
 
@@ -35,16 +36,26 @@ export default function CapabilityIndex({ items }: { items: readonly Item[] }) {
                 size={18}
                 weight="regular"
                 aria-hidden
-                className="shrink-0 text-accent-strong opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 lg:translate-y-1"
+                className="shrink-0 text-accent-strong opacity-40 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 lg:translate-y-1"
               />
               <span
-                className={`font-mono text-xl font-medium tracking-wide text-foreground uppercase lg:text-2xl ${
+                className={`flex items-center gap-3 font-mono text-xl font-medium tracking-wide text-foreground uppercase lg:text-2xl ${
                   reduce
                     ? ""
                     : "transition-transform duration-300 group-hover:translate-x-2 group-focus-visible:translate-x-2"
                 }`}
               >
                 {label}
+                {/* Every row here is a link, but the entire affordance for
+                    that (the label shift and the accent rule drawing in) was
+                    hover-only, so on a touch screen these read as six static
+                    headings. A persistent mark below lg says otherwise;
+                    desktop still gets the quieter hover treatment. */}
+                <ArrowRight
+                  size={15}
+                  aria-hidden
+                  className="shrink-0 text-accent-strong lg:hidden"
+                />
               </span>
               <span className="max-w-[34ch] text-[15px] leading-[1.45] text-foreground-secondary sm:text-base">
                 {detail}
@@ -56,7 +67,7 @@ export default function CapabilityIndex({ items }: { items: readonly Item[] }) {
               {!reduce && (
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-accent-strong transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                  className="pointer-events-none absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-accent-strong transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100 group-active:scale-x-100"
                 />
               )}
             </a>
